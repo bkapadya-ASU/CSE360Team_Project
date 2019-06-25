@@ -14,7 +14,7 @@ import javafx.scene.text.*;
 
 public class GUImain {
 	
-	public void start(Stage primaryStage,List<Score> list) {
+	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
 		try {
 			BorderPane root = new BorderPane();
 			
@@ -35,7 +35,7 @@ public class GUImain {
 			Button bt5 = new Button("Add");
 			bt5.setOnAction(e->{
 				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, "Enter grade",list); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, "Enter grade",list, scoreList); 
 			});
 			Button bt6 = new Button("Delete");
 			Button bt7 = new Button("Save");
