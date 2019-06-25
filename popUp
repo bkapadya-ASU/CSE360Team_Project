@@ -17,9 +17,9 @@ import javafx.scene.control.*;
 
 public class addGradePopUp {
 
-	public addGradePopUp(Stage stage, String message, List<Score> update) {
+	public addGradePopUp(Stage stage, String message,List<Score> update, ScoreList score) {
 		GUImain gui = new GUImain();
-		ScoreList scoreList = new ScoreList(100);
+		
 		
 		BorderPane bp = new BorderPane();
         HBox hBox = new HBox();
@@ -38,9 +38,10 @@ public class addGradePopUp {
         
         Button ok = new Button("OK");
         ok.setOnAction(e->{
-        	scoreList.add(Double.parseDouble(grade.getText()));
-        	scoreList.getList();
-        	gui.start(stage,scoreList.getList());
+        	score.add(Double.parseDouble(grade.getText()));
+        	
+        	gui.start(stage,score.getList(),score);
+        	
         });
         ok.setTranslateX(110);
         ok.setTranslateY(20);
