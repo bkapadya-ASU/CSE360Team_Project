@@ -55,7 +55,7 @@ public class GradeAnalyzer extends Application {
 					scoreList.add(Double.parseDouble(scan.nextLine()));
 				}
 				
-				if(scoreList) { //This will open a new window if the file selected doesn't contain numbers
+				if(scoreList.getList().isEmpty()) { //This will open a new window if the file selected doesn't contain numbers
 					try {
 						error.start(stage);
 
@@ -64,16 +64,13 @@ public class GradeAnalyzer extends Application {
 					}					
 				}
 				else {
-					screen.start(stage, list);
+					screen.start(stage, scoreList.getList(), scoreList);
 				}
 				
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
         	
-        	for(int i = 0; i < list.size(); i++) {
-        		System.out.println(list.get(i));
-        	}
         });
         
         Label label = new Label("Would you like to load a file?");
