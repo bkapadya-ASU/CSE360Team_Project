@@ -42,8 +42,8 @@ public class ScoreList
 		for (int i = 0; i<getNumberOfScores(); i++) {
 			double percentScore = scoreList.get(i).getPercentScore();
 			double percentScoreBasedOnHighestScore = scoreList.get(i).getPercentScoreBasedOnHighestScore();
-			String letterGrade = getLetterGrade(percentScore);
-			String letterGradeBasedOnHighestScore = getLetterGrade(percentScoreBasedOnHighestScore);
+			String letterGrade = findLetterGrade(percentScore);
+			String letterGradeBasedOnHighestScore = findLetterGrade(percentScoreBasedOnHighestScore);
 			scoreList.get(i).setLetterGrade(letterGrade);
 			scoreList.get(i).setLetterGradeBasedOnHighestScore(letterGradeBasedOnHighestScore);
 		}
@@ -64,8 +64,8 @@ public class ScoreList
 		
 		double percentScore = rawScore / totalScorePossible *100.0;
 		double percentScoreBasedOnHighestScore= rawScore / maxScore;
-		String letterGrade = getLetterGrade(percentScore);
-		String letterGradeBasedOnHighestScore = getLetterGrade(percentScoreBasedOnHighestScore);
+		String letterGrade = findLetterGrade(percentScore);
+		String letterGradeBasedOnHighestScore = findLetterGrade(percentScoreBasedOnHighestScore);
 		Score temp  = new Score(rawScore, percentScore, percentScoreBasedOnHighestScore, letterGrade, letterGradeBasedOnHighestScore);
 		scoreList.add(temp);
 	}
@@ -104,8 +104,8 @@ public class ScoreList
 		
 		double percentScore = rawScore / totalScorePossible *100.0;
 		double percentScoreBasedOnHighestScore= rawScore / maxScore;
-		String letterGrade = getLetterGrade(percentScore);
-		String letterGradeBasedOnHighestScore = getLetterGrade(percentScoreBasedOnHighestScore);
+		String letterGrade = findLetterGrade(percentScore);
+		String letterGradeBasedOnHighestScore = findLetterGrade(percentScoreBasedOnHighestScore);
 		Score temp  = new Score(rawScore, percentScore, percentScoreBasedOnHighestScore, letterGrade, letterGradeBasedOnHighestScore);
 		scoreList.set(index, temp);
 		if (mustFindNewMax) {
@@ -136,16 +136,49 @@ public class ScoreList
 		}
 	}
 	
-	public double findMedianScore() {
-		//NEEDS IMPLEMENTATION
+	public double getMedianScore() {
+		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
+		Collections.sort(temp);
+		int n = temp.size();
+		int index= 0;
+		if (n%2==1) {
+			index = (n-1)/2;
+		}
+		if (n%2==0) {
+			index = n/2;
+		}
+		
+		return temp.get(index).getRawScore();
 	}
 	
-	public double findMedianPercentScore() {
-		//NEEDS IMPLEMENTATION
+	public double getMedianPercentScore() {
+		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
+		Collections.sort(temp);
+		int n = temp.size();
+		int index= 0;
+		if (n%2==1) {
+			index = (n-1)/2;
+		}
+		if (n%2==0) {
+			index = n/2;
+		}
+		
+		return temp.get(index).getPercentScore();
 	}
 	
-	public double findMedianPercentScoreBasedOnHighestScore() {
-		//NEEDS IMPLEMENTATION
+	public double getMedianPercentScoreBasedOnHighestScore() {
+		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
+		Collections.sort(temp);
+		int n = temp.size();
+		int index= 0;
+		if (n%2==1) {
+			index = (n-1)/2;
+		}
+		if (n%2==0) {
+			index = n/2;
+		}
+		
+		return temp.get(index).getPercentScoreBasedOnHighestScore();
 	}
 	
 	/**
@@ -164,7 +197,7 @@ public class ScoreList
 	 * @param percentScore Double value for student's percentage score.
 	 * @return String value for student's letter grade
 	 */
-	private String getLetterGrade(double percentScore) 
+	private String findLetterGrade(double percentScore) 
 	{
 		percentScore = Math.round(percentScore);
 		if (percentScore >= Athreshold)

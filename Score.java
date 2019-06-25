@@ -1,5 +1,5 @@
 
-public class Score 
+public class Score implements Comparable<Score>
 {
 	private double rawScore;
 	private double percentScore;
@@ -85,6 +85,15 @@ public class Score
 	 */
 	public String getLetterGradeBasedOnHighestScore() {
 		return letterGradeBasedOnHighestScore;
+	}
+	
+	@Override
+	public int compareTo(Score compScore) {
+		if (this.rawScore > compScore.rawScore)
+			return 1;
+		if (this.rawScore < compScore.rawScore)
+			return -1;
+		return 0;
 	}
 	
 }
