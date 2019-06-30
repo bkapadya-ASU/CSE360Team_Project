@@ -17,32 +17,35 @@ import javafx.scene.control.*;
 
 public class addGradePopUp {
 
-	public addGradePopUp(Stage stage, String message,List<Score> update, ScoreList score) {
-		GUImain gui = new GUImain();
+	public addGradePopUp(Stage stage, String message,List<Score> update, ScoreList score, String command) {
 		
+		GUImain gui = new GUImain();
 		
 		BorderPane bp = new BorderPane();
         HBox hBox = new HBox();
         HBox hBox2 = new HBox();
         VBox vBox = new VBox();
-        
-        Label enterGrade = new Label(message + ": ");
+        VBox vBox2 = new VBox();
+
+		 
+        Label enterGrade = new Label(message + "");
         enterGrade.setTranslateY(15);
         enterGrade.setTranslateX(5);
         enterGrade.setStyle("-fx-font: 16 arial;");
         
-        TextArea grade = new TextArea();
+        TextField grade = new TextField();
         grade.setTranslateX(30);
+        grade.setTranslateY(10);
         grade.setMaxSize(200,20);
 
         
-        Button ok = new Button("OK");
+        Button ok = new Button("OKAY");
         ok.setOnAction(e->{
         	score.add(Double.parseDouble(grade.getText()));
-        	
-        	gui.start(stage,score.getList(),score);
-        	
+        	gui.start(stage,score.getList(),score);        
         });
+        
+        
         ok.setTranslateX(110);
         ok.setTranslateY(20);
         ok.setMinWidth(50);
@@ -52,13 +55,15 @@ public class addGradePopUp {
         cancle.setTranslateY(20);
         cancle.setMinWidth(50);
         
+                
         hBox.getChildren().addAll(enterGrade, grade);
         hBox2.getChildren().addAll(ok, cancle);
-        
+
         vBox.getChildren().addAll(hBox, hBox2);
                 
         Scene scene = new Scene(vBox, 400, 100);
-    	stage.setScene(scene);
+    	//Scene scene = new Scene(vBox, 600,200);
+        stage.setScene(scene);
         stage.show();
 	}
 
