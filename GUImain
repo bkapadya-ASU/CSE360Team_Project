@@ -13,7 +13,7 @@ import javafx.scene.text.*;
 
 
 public class GUImain {
-	
+
 	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
 		try {
 			BorderPane root = new BorderPane();
@@ -31,22 +31,54 @@ public class GUImain {
 			t.setFont(new Font(30));
 			t.setText("Grade Analyzer Prototype");
 			
-			Button bt1 = new Button("Statistics");
-			Button bt5 = new Button("Add");
-			bt5.setOnAction(e->{
+			Button statisticsB = new Button("Statistics");
+			statisticsB.setMinWidth(180);
+			statisticsB.setMinHeight(50);
+			
+			Button addB = new Button("Add");
+			addB.setMinWidth(200);
+			addB.setMinHeight(50);
+			addB.setOnAction(e->{
 				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, "Enter grade",list, scoreList); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, "Enter grade: ",list, scoreList,"Add"); 
 			});
-			Button bt6 = new Button("Delete");
-			Button bt7 = new Button("Save");
-			Button bt8 = new Button("Exit");
+			
+			Button deleteB = new Button("Delete");
+			deleteB.setMinWidth(200);
+			deleteB.setMinHeight(50);
+			deleteB.setOnAction(e->{
+				Stage newStage = new Stage();
+				addGradePopUp gragePop = new addGradePopUp(newStage, "Are you sure You eant to Delete: ",list, scoreList,"Delete"); 
+			});
+			
+			Button changeB = new Button("Set/Change");
+			changeB.setMinWidth(200);
+			changeB.setMinHeight(50);
+
+			Button saveB = new Button("SAVE");
+			saveB.setMinWidth(200);
+			saveB.setMinHeight(50);
+
+			Button thresholdB = new Button("CHANGE THRESHOLDS");
+			thresholdB.setMinWidth(200);
+			thresholdB.setMinHeight(50);
+
+			Button exitB = new Button("EXIT");
+			exitB.setMinWidth(200);
+			exitB.setMinHeight(50);
+			
+
 			
 			GridPane gp = new GridPane();
-			gp.add(bt1, 0, 0);
-			gp.add(bt5, 0, 2);
-			gp.add(bt6, 1, 2);
-			gp.add(bt7, 0, 3);
-			gp.add(bt8, 1, 3);
+			gp.add(statisticsB, 0, 0);
+			gp.add(addB, 0, 2);
+			gp.add(deleteB, 1, 2);
+			gp.add(saveB, 0, 6);
+			gp.add(exitB, 1, 3);
+			gp.add(changeB, 1, 4);
+			gp.add(thresholdB, 0, 4);
+			
+			
 			
 			gp.setPadding(new Insets(20, 12, 15, 20));
 			gp.setVgap(10.0);
