@@ -34,6 +34,9 @@ public class GUImain {
 			Button statisticsB = new Button("Statistics");
 			statisticsB.setMinWidth(180);
 			statisticsB.setMinHeight(50);
+			statisticsB.setOnAction(e ->{
+				
+			});
 			
 			Button addB = new Button("Add");
 			addB.setMinWidth(200);
@@ -54,20 +57,31 @@ public class GUImain {
 			Button changeB = new Button("Set/Change");
 			changeB.setMinWidth(200);
 			changeB.setMinHeight(50);
+			changeB.setOnAction(e ->{
+				
+			});
 
 			Button saveB = new Button("SAVE");
 			saveB.setMinWidth(200);
 			saveB.setMinHeight(50);
+			saveB.setOnAction(e ->{
+				
+			});
 
 			Button thresholdB = new Button("CHANGE THRESHOLDS");
 			thresholdB.setMinWidth(200);
 			thresholdB.setMinHeight(50);
+			thresholdB.setOnAction(e ->{
+				
+			});
 
 			Button exitB = new Button("EXIT");
 			exitB.setMinWidth(200);
 			exitB.setMinHeight(50);
-			
-
+			exitB.setOnAction(e ->{
+				Stage stage = (Stage) exitB.getScene().getWindow();
+				stage.close();
+			});
 			
 			GridPane gp = new GridPane();
 			gp.add(statisticsB, 0, 0);
