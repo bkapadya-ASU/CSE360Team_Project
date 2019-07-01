@@ -51,6 +51,10 @@ public class addGradePopUp {
         ok.setMinWidth(50);
         
         Button cancle = new Button("CANCLE");
+	cancle.setOnAction(e ->{
+        	Stage newStage = (Stage) cancle.getScene().getWindow();
+        	newStage.close();
+        });
         cancle.setTranslateX(130);
         cancle.setTranslateY(20);
         cancle.setMinWidth(50);
