@@ -17,6 +17,7 @@ public class GUImain {
 	private int deleteNumber;
 	
 	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
+		
 		try {
 			BorderPane root = new BorderPane();
 			
@@ -27,6 +28,11 @@ public class GUImain {
 				listView.getItems().add(list.get(i).getRawScore());
 
 			}
+			
+			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			listView.getSelectionModel().selectedItemProperty().addListener(e->{
+				deleteNumber = listView.getSelectionModel().getSelectedIndex();
+			});
 			
 			Text t = new Text();
 			
@@ -43,17 +49,12 @@ public class GUImain {
 			addB.setOnAction(e->{
 				Stage newStage = new Stage();
 				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400,null,0); 
+				System.out.print("Hello");
 			});
 			
 			Button deleteB = new Button("DELETE");
 			deleteB.setMinWidth(200);
-			deleteB.setMinHeight(50);
-			
-			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			listView.getSelectionModel().selectedItemProperty().addListener(e->{
-				deleteNumber = listView.getSelectionModel().getSelectedIndex();
-			});
-			
+			deleteB.setMinHeight(50);	
 			if(deleteNumber>=0){	
 				
 				deleteB.setOnAction(e->{
