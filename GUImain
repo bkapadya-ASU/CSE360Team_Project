@@ -13,7 +13,9 @@ import javafx.scene.text.*;
 
 
 public class GUImain {
-
+	
+	private int deleteNumber;
+	
 	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
 		try {
 			BorderPane root = new BorderPane();
@@ -40,17 +42,25 @@ public class GUImain {
 			addB.setMinHeight(50);
 			addB.setOnAction(e->{
 				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400,null,0); 
 			});
 			
 			Button deleteB = new Button("DELETE");
 			deleteB.setMinWidth(200);
 			deleteB.setMinHeight(50);
-			deleteB.setOnAction(e->{
-				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",500); 
+			
+			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			listView.getSelectionModel().selectedItemProperty().addListener(e->{
+				deleteNumber = listView.getSelectionModel().getSelectedIndex();
 			});
 			
+			if(deleteNumber>=0){	
+				
+				deleteB.setOnAction(e->{
+					Stage newStage = new Stage();
+					addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",400,listView,deleteNumber); 
+				});
+			}			
 			Button changeB = new Button("SET/CHANGE");
 			changeB.setMinWidth(200);
 			changeB.setMinHeight(50);
