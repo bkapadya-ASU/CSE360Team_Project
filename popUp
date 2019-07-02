@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 
 public class addGradePopUp {
 
-	public addGradePopUp(Stage newStage, Stage sameStage,String message,List<Score> update, ScoreList score, String command, int size, ListView l,int numberDelted) {
+	public addGradePopUp(Stage newStage, Stage sameStage,String message,List<Score> update, ScoreList score, String command, int size, ListView l,int numberDeleted) {
 
 		GUImain gui = new GUImain();
 		
@@ -26,9 +26,12 @@ public class addGradePopUp {
 	        HBox hBox2 = new HBox();
 	        VBox vBox = new VBox();
 	        VBox vBox2 = new VBox();
-	        
-	        double number = (double) l.getItems().get(numberDelted); //get the value of the list and print it out
-	        	
+	        double number = 0;
+	       
+	        //checks if a number has been selected when wanting to delete
+	        if(numberDeleted>=0 && command.equals("Delete")) {
+	        	number = (double) l.getItems().get(numberDeleted); //get the value of the list and print it out
+	        }
 			 
 	        Label enterGrade = new Label(message + "");
 	        enterGrade.setTranslateY(15);
@@ -57,9 +60,9 @@ public class addGradePopUp {
 		        	gui.start(sameStage,score.getList(),score);        
 		        });
 	        }
-	        else if(command.equals("Delete")) {
+	        if(command.equals("Delete")) {
 	        	ok.setOnAction(e->{
-	        		score.delete(numberDelted);
+	        		score.delete(numberDeleted);
 	        		
 		        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
 		        	cancleStage.close();
@@ -83,7 +86,6 @@ public class addGradePopUp {
 	        cancle.setMinWidth(50);
 	        
 			if(command.equals("Add")) {
-				System.out.println("hello");
 			        
 		        hBox.getChildren().addAll(enterGrade, grade);
 		        hBox2.getChildren().addAll(ok, cancle);
