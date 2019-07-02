@@ -40,7 +40,7 @@ public class GUImain {
 			addB.setMinHeight(50);
 			addB.setOnAction(e->{
 				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, "Enter grade: ",list, scoreList,"Add"); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400); 
 			});
 			
 			Button deleteB = new Button("DELETE");
@@ -48,7 +48,7 @@ public class GUImain {
 			deleteB.setMinHeight(50);
 			deleteB.setOnAction(e->{
 				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, "Are you sure You eant to Delete: ",list, scoreList,"Delete"); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",500); 
 			});
 			
 			Button changeB = new Button("SET/CHANGE");
@@ -69,10 +69,8 @@ public class GUImain {
 			exitB.setOnAction(e ->{
 				Stage stage = (Stage) exitB.getScene().getWindow();
 				stage.close();
-			});
-			
-
-			
+			});		
+				
 			GridPane gp = new GridPane();
 			gp.add(statisticsB, 0, 0);
 			gp.add(addB, 0, 2);
@@ -80,9 +78,7 @@ public class GUImain {
 			gp.add(saveB, 1, 13);
 			gp.add(exitB, 0, 13);
 			gp.add(changeB, 1, 4);
-			gp.add(thresholdB, 0, 4);
-			
-			
+			gp.add(thresholdB, 0, 4);			
 			
 			gp.setPadding(new Insets(20, 12, 15, 20));
 			gp.setVgap(10.0);
