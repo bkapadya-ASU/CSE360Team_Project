@@ -17,7 +17,9 @@ import javafx.scene.control.*;
 
 public class addGradePopUp {
 
-	public addGradePopUp(Stage stage, String message,List<Score> update, ScoreList score, String command) {
+	public addGradePopUp(Stage newStage, Stage sameStage,String message,List<Score> update, ScoreList score, String command, int size) {
+		
+		System.out.println(command);
 		
 		GUImain gui = new GUImain();
 		
@@ -42,7 +44,11 @@ public class addGradePopUp {
         Button ok = new Button("OKAY");
         ok.setOnAction(e->{
         	score.add(Double.parseDouble(grade.getText()));
-        	gui.start(stage,score.getList(),score);        
+        	
+        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
+        	cancleStage.close();
+        	
+        	gui.start(sameStage,score.getList(),score);        
         });
         
         
@@ -51,10 +57,10 @@ public class addGradePopUp {
         ok.setMinWidth(50);
         
         Button cancle = new Button("CANCLE");
-	cancle.setOnAction(e ->{
-        	Stage newStage = (Stage) cancle.getScene().getWindow();
-        	newStage.close();
-        });
+		cancle.setOnAction(e ->{
+        	Stage cancleStage = (Stage) cancle.getScene().getWindow();
+        	cancleStage.close();
+	     });
         cancle.setTranslateX(130);
         cancle.setTranslateY(20);
         cancle.setMinWidth(50);
@@ -65,10 +71,10 @@ public class addGradePopUp {
 
         vBox.getChildren().addAll(hBox, hBox2);
                 
-        Scene scene = new Scene(vBox, 400, 100);
+        Scene scene = new Scene(vBox, size, 100);
     	//Scene scene = new Scene(vBox, 600,200);
-        stage.setScene(scene);
-        stage.show();
+        newStage.setScene(scene);
+        newStage.show();
 	}
 
 }
