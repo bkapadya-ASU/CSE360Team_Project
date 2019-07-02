@@ -1,80 +1,113 @@
 package GUI.project;
-
-
-import java.io.File;
-import javafx.scene.layout.VBox;
-import java.io.FileNotFoundException;
-import java.util.*;  
-import javafx.stage.FileChooser;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.stage.Stage;
-import javafx.scene.control.*; 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.geometry.*;
+import javafx.scene.text.*;
 
-public class addGradePopUp {
 
-	public addGradePopUp(Stage newStage, Stage sameStage,String message,List<Score> update, ScoreList score, String command, int size) {
-		
-		System.out.println(command);
-		
-		GUImain gui = new GUImain();
-		
-		BorderPane bp = new BorderPane();
-        HBox hBox = new HBox();
-        HBox hBox2 = new HBox();
-        VBox vBox = new VBox();
-        VBox vBox2 = new VBox();
+public class GUImain {
+	
+	private int deleteNumber;
+	
+	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
+		try {
+			BorderPane root = new BorderPane();
+			
+			
+			ListView listView = new ListView();
+			
+			for(int i = 0;i<list.size();i++) {
+				listView.getItems().add(list.get(i).getRawScore());
 
-		 
-        Label enterGrade = new Label(message + "");
-        enterGrade.setTranslateY(15);
-        enterGrade.setTranslateX(5);
-        enterGrade.setStyle("-fx-font: 16 arial;");
-        
-        TextField grade = new TextField();
-        grade.setTranslateX(30);
-        grade.setTranslateY(10);
-        grade.setMaxSize(200,20);
+			}
+			
+			Text t = new Text();
+			
+			t.setFont(new Font(30));
+			t.setText("Grade Analyzer Prototype");
+			
+			Button statisticsB = new Button("STATISTICS");
+			statisticsB.setMinWidth(180);
+			statisticsB.setMinHeight(50);
+			
+			Button addB = new Button("ADD");
+			addB.setMinWidth(200);
+			addB.setMinHeight(50);
+			addB.setOnAction(e->{
+				Stage newStage = new Stage();
+				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400,null,0); 
+			});
+			
+			Button deleteB = new Button("DELETE");
+			deleteB.setMinWidth(200);
+			deleteB.setMinHeight(50);
+			
+			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			listView.getSelectionModel().selectedItemProperty().addListener(e->{
+				deleteNumber = listView.getSelectionModel().getSelectedIndex();
+			});
+			
+			if(deleteNumber>=0){	
+				
+				deleteB.setOnAction(e->{
+					Stage newStage = new Stage();
+					addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",400,listView,deleteNumber); 
+				});
+			}			
+			Button changeB = new Button("SET/CHANGE");
+			changeB.setMinWidth(200);
+			changeB.setMinHeight(50);
 
-        
-        Button ok = new Button("OKAY");
-        ok.setOnAction(e->{
-        	score.add(Double.parseDouble(grade.getText()));
-        	
-        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
-        	cancleStage.close();
-        	
-        	gui.start(sameStage,score.getList(),score);        
-        });
-        
-        
-        ok.setTranslateX(110);
-        ok.setTranslateY(20);
-        ok.setMinWidth(50);
-        
-        Button cancle = new Button("CANCLE");
-		cancle.setOnAction(e ->{
-        	Stage cancleStage = (Stage) cancle.getScene().getWindow();
-        	cancleStage.close();
-	     });
-        cancle.setTranslateX(130);
-        cancle.setTranslateY(20);
-        cancle.setMinWidth(50);
-        
-                
-        hBox.getChildren().addAll(enterGrade, grade);
-        hBox2.getChildren().addAll(ok, cancle);
+			Button saveB = new Button("SAVE");
+			saveB.setMinWidth(200);
+			saveB.setMinHeight(50);
 
-        vBox.getChildren().addAll(hBox, hBox2);
-                
-        Scene scene = new Scene(vBox, size, 100);
-    	//Scene scene = new Scene(vBox, 600,200);
-        newStage.setScene(scene);
-        newStage.show();
+			Button thresholdB = new Button("CHANGE THRESHOLDS");
+			thresholdB.setMinWidth(200);
+			thresholdB.setMinHeight(50);
+
+			Button exitB = new Button("EXIT");
+			exitB.setMinWidth(200);
+			exitB.setMinHeight(50);
+			exitB.setOnAction(e ->{
+				Stage stage = (Stage) exitB.getScene().getWindow();
+				stage.close();
+			});		
+				
+			GridPane gp = new GridPane();
+			gp.add(statisticsB, 0, 0);
+			gp.add(addB, 0, 2);
+			gp.add(deleteB, 1, 2);
+			gp.add(saveB, 1, 13);
+			gp.add(exitB, 0, 13);
+			gp.add(changeB, 1, 4);
+			gp.add(thresholdB, 0, 4);			
+			
+			gp.setPadding(new Insets(20, 12, 15, 20));
+			gp.setVgap(10.0);
+			
+			root.setLeft(gp);
+			root.setRight(listView);
+			root.setTop(t);
+			
+			Scene scene = new Scene(root,350,350);
+			primaryStage.setWidth(600);
+			primaryStage.setHeight(500);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setTitle("Grade Analyzer");
+			primaryStage.setScene(scene);
+	        primaryStage.setMinWidth(primaryStage.getWidth());
+	        primaryStage.setMinHeight(primaryStage.getHeight());
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }
