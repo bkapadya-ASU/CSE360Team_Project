@@ -86,23 +86,36 @@ public class PopUp {
         }
         else
         {
+		String mean = "Mean:       " + Double.toString(score.getMeanScore());
+        	String median = "Median:     " + Double.toString(score.getMedianScore());
+        	String max = "Maximum: " + Double.toString(score.getMaxScore());
+        	String min = "Minimum:  " + Double.toString(score.getMinScore());
+        	String meanPer = "Mean:       " + Double.toString(score.getMeanPercentScore());
+        	String medianPer = "Median:     " + Double.toString(score.getMedianPercentScore());
+        	String maxPer = "Maximum " + Double.toString(score.getMaxScorePercentage());
+        	String minPer = "Minimum:  " + Double.toString(score.getMinScorePercentage());
+        	String meanHigh = "Mean:       " + Double.toString(score.getMeanPercentScoreBasedOnHighestScore());
+        	String medianHigh = "Median:     " + Double.toString(score.getMedianPercentScoreBasedOnHighestScore());
+        	String maxHigh = "Maximum: " + Double.toString(score.getMaxScorePercentageBasedOnHighestScore());
+        	String minHigh = "Minimum:  " + Double.toString(score.getMinScorePercentageBasedOnHighestScore());
+        	
         	Label rawLabel = new Label("Raw Score");
-        	Label meanLabel = new Label("Mean: ");
-        	Label medianLabel = new Label("Median: ");
-        	Label maxLabel = new Label("Maximum: ");
-        	Label minLabel = new Label("Minimum: ");
+        	Label meanLabel = new Label(mean);
+        	Label medianLabel = new Label(median);
+        	Label maxLabel = new Label(max);
+        	Label minLabel = new Label(min);
         	Label percentileLabel = new Label("Percentile Score");
         	Label highestLabel = new Label("Percentile Score with Highest Score");
         	Label gradeLabel = new Label("Letter Grade");
         	Label highestGradeLabel = new Label("Letter Grade with Highest Score");
-        	Label meanPercentileLabel = new Label("Mean: ");
-        	Label medianPercentileLabel = new Label("Median: ");
-        	Label maxPercentileLabel = new Label("Maximum: ");
-        	Label minPercentileLabel = new Label("Minimum: ");
-        	Label meanHighestLabel = new Label("Mean: ");
-        	Label medianHighestLabel = new Label("Median: ");
-        	Label maxHighestLabel = new Label("Maximum: ");
-        	Label minHighestLabel = new Label("Minimum: ");
+        	Label meanPercentileLabel = new Label(meanPer);
+        	Label medianPercentileLabel = new Label(medianPer);
+        	Label maxPercentileLabel = new Label(maxPer);
+        	Label minPercentileLabel = new Label(minPer);
+        	Label meanHighestLabel = new Label(meanHigh);
+        	Label medianHighestLabel = new Label(medianHigh);
+        	Label maxHighestLabel = new Label(maxHigh);
+        	Label minHighestLabel = new Label(minHigh);
         	
         	GridPane gp1 = new GridPane();
         	gp1.add(rawLabel, 0, 0);
@@ -126,12 +139,9 @@ public class PopUp {
         	gp1.setHgap(30.00);
         	gp1.setVgap(10.00);
         	
-        	Scene sceneS = new Scene(gp1, 750, 220);
+        	Scene sceneS = new Scene(gp1, 900, 220);
         	newStage.setScene(sceneS);
         	newStage.show();
-        }
-        
-       
 	}
-
+	}
 }
