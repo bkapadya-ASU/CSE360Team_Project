@@ -42,6 +42,10 @@ public class GUImain {
 			Button statisticsB = new Button("STATISTICS");
 			statisticsB.setMinWidth(180);
 			statisticsB.setMinHeight(50);
+			statisticsB.setOnAction(e ->{
+				Stage newStage = new Stage();
+				PopUp statisticsPU = new PopUp(newStage, primaryStage, "Statistics", scoreList, "Statistics");
+			});
 			
 			Button addB = new Button("ADD");
 			addB.setMinWidth(200);
@@ -73,6 +77,10 @@ public class GUImain {
 			Button thresholdB = new Button("CHANGE THRESHOLDS");
 			thresholdB.setMinWidth(200);
 			thresholdB.setMinHeight(50);
+			thresholdB.setOnAction(e ->{
+				Stage newStage = new Stage();
+				PopUp thresholdPU = new PopUp(newStage, primaryStage, "Set new threshold", scoreList, "Threshold");
+			});
 
 			Button exitB = new Button("EXIT");
 			exitB.setMinWidth(200);
