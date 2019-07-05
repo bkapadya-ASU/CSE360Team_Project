@@ -63,12 +63,17 @@ public class GUImain {
 				
 				deleteB.setOnAction(e->{
 					Stage newStage = new Stage();
-					addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",400,listView,deleteNumber); 
+					//addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",400,listView,deleteNumber);
+					SelectionPopUp deletePopUp = new SelectionPopUp(newStage, primaryStage, "Are you sure you want to Delete", scoreList, "Delete", listView, deleteNumber);
 				});
 			}			
 			Button changeB = new Button("SET/CHANGE");
 			changeB.setMinWidth(200);
 			changeB.setMinHeight(50);
+			changeB.setOnAction(e ->{
+				Stage newStage = new Stage();
+				SelectionPopUp setPopUp = new SelectionPopUp(newStage, primaryStage, "Enter Grade", scoreList, "Set", listView, deleteNumber);
+			});
 
 			Button saveB = new Button("SAVE");
 			saveB.setMinWidth(200);
@@ -109,7 +114,6 @@ public class GUImain {
 			Scene scene = new Scene(root,350,350);
 			primaryStage.setWidth(600);
 			primaryStage.setHeight(500);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Grade Analyzer");
 			primaryStage.setScene(scene);
 	        primaryStage.setMinWidth(primaryStage.getWidth());
