@@ -86,6 +86,9 @@ public class PopUp {
         }
         else
         {
+		score.findMinScore();
+        	score.findMaxScore();
+		
 		String mean = "Mean:       " + Double.toString(score.getMeanScore());
         	String median = "Median:     " + Double.toString(score.getMedianScore());
         	String max = "Maximum: " + Double.toString(score.getMaxScore());
