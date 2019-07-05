@@ -117,7 +117,7 @@ public class ScoreList
 	/**
 	 * This method will ONLY be invoked if the minimum element is deleted. It finds a new minimum score from scratch.
 	 */
-	private void findMinScore() {
+	public void findMinScore() {
 		minScore = Integer.MAX_VALUE;
 		for (int i = 0; i<getNumberOfScores(); i++) {
 			if(scoreList.get(i).getRawScore()<minScore)
@@ -128,7 +128,7 @@ public class ScoreList
 	/**
 	 * This method will ONLY be invoked if the maximum element is deleted or changed. It finds a new maximum score from scratch.
 	 */
-	private void findMaxScore() {
+	public void findMaxScore() {
 		maxScore = Integer.MIN_VALUE;
 		for (int i = 0; i<getNumberOfScores(); i++) {
 			if(scoreList.get(i).getRawScore()>maxScore)
