@@ -1,5 +1,7 @@
 package GUI.project;
 import javafx.application.Application;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,11 @@ import javafx.scene.text.*;
 
 public class GUImain {
 	
-	private int deleteNumber;
+	private int deleteNumber = -1;
 	
 	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
+		Stage newStage = new Stage();
+		DecimalFormat df = new DecimalFormat("#.00");
 		
 		try {
 			BorderPane root = new BorderPane();
@@ -25,7 +29,7 @@ public class GUImain {
 			ListView listView = new ListView();
 			
 			for(int i = 0;i<list.size();i++) {
-				listView.getItems().add(list.get(i).getRawScore());
+				listView.getItems().add(df.format(list.get(i).getRawScore()));
 
 			}
 			
@@ -42,39 +46,40 @@ public class GUImain {
 			Button statisticsB = new Button("STATISTICS");
 			statisticsB.setMinWidth(180);
 			statisticsB.setMinHeight(50);
-			statisticsB.setOnAction(e ->{
-				Stage newStage = new Stage();
-				PopUp statisticsPU = new PopUp(newStage, primaryStage, "Statistics", scoreList, "Statistics");
-			});
 			
 			Button addB = new Button("ADD");
 			addB.setMinWidth(200);
 			addB.setMinHeight(50);
 			addB.setOnAction(e->{
-				Stage newStage = new Stage();
-				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ",list, scoreList,"Add",400,null,0); 
+				addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter grade: ", scoreList,"Add",null,0); 
 				System.out.print("Hello");
 			});
 			
 			Button deleteB = new Button("DELETE");
 			deleteB.setMinWidth(200);
-			deleteB.setMinHeight(50);	
-			if(deleteNumber>=0){	
-				
-				deleteB.setOnAction(e->{
-					Stage newStage = new Stage();
-					//addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ",list, scoreList,"Delete",400,listView,deleteNumber);
-					SelectionPopUp deletePopUp = new SelectionPopUp(newStage, primaryStage, "Are you sure you want to Delete", scoreList, "Delete", listView, deleteNumber);
-				});
-			}			
+			deleteB.setMinHeight(50);		
+			deleteB.setOnAction(e->{
+				if(deleteNumber>=0){	
+					addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Are you sure you eant to Delete: ", scoreList,"Delete",listView,deleteNumber); 
+				}
+				else { 
+					SelectionError showError = new SelectionError(newStage, primaryStage, scoreList);
+				}
+			});		
+			
 			Button changeB = new Button("SET/CHANGE");
 			changeB.setMinWidth(200);
 			changeB.setMinHeight(50);
-			changeB.setOnAction(e ->{
-				Stage newStage = new Stage();
-				SelectionPopUp setPopUp = new SelectionPopUp(newStage, primaryStage, "Enter Grade", scoreList, "Set", listView, deleteNumber);
+			changeB.setOnAction(e->{
+				if(deleteNumber>=0){	
+					addGradePopUp gragePop = new addGradePopUp(newStage, primaryStage,"Enter new grade: ", scoreList,"SET/CHANGE",listView,deleteNumber); 
+				}
+				else { 
+					SelectionError b = new SelectionError(newStage, primaryStage, scoreList);
+				}
 			});
 
+				
 			Button saveB = new Button("SAVE");
 			saveB.setMinWidth(200);
 			saveB.setMinHeight(50);
@@ -82,10 +87,6 @@ public class GUImain {
 			Button thresholdB = new Button("CHANGE THRESHOLDS");
 			thresholdB.setMinWidth(200);
 			thresholdB.setMinHeight(50);
-			thresholdB.setOnAction(e ->{
-				Stage newStage = new Stage();
-				PopUp thresholdPU = new PopUp(newStage, primaryStage, "Set new threshold", scoreList, "Threshold");
-			});
 
 			Button exitB = new Button("EXIT");
 			exitB.setMinWidth(200);
@@ -114,6 +115,7 @@ public class GUImain {
 			Scene scene = new Scene(root,350,350);
 			primaryStage.setWidth(600);
 			primaryStage.setHeight(500);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Grade Analyzer");
 			primaryStage.setScene(scene);
 	        primaryStage.setMinWidth(primaryStage.getWidth());
