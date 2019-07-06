@@ -87,6 +87,9 @@ public class GUImain {
 			Button thresholdB = new Button("CHANGE THRESHOLDS");
 			thresholdB.setMinWidth(200);
 			thresholdB.setMinHeight(50);
+			thresholdB.setOnAction(e->{
+				PopUp pop = new PopUp(newStage, primaryStage, "Change Threshold", scoreList,"Threshold");
+			});
 
 			Button exitB = new Button("EXIT");
 			exitB.setMinWidth(200);
