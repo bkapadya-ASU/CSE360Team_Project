@@ -1,0 +1,43 @@
+package GUI.project;
+
+import javafx.scene.layout.VBox;
+
+import javafx.scene.paint.Color;
+import java.util.*;  
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.scene.control.*; 
+
+public class SelectionError {
+	
+	public SelectionError(Stage stage, Stage sameStage, ScoreList score) {
+		
+		GUImain gui = new GUImain();
+		VBox vBox = new VBox();
+		
+		Label error = new Label("PLEASE SELECT A GRADE TO MODIFY");
+		error.setTextFill(Color.web("#ff0000"));
+		error.setStyle("-fx-font: 20 arial;");
+        error.setTranslateX(20);
+        
+		Button errorButton = new Button("OK");
+		errorButton.setTranslateX(180);
+		errorButton.setTranslateY(10);
+		errorButton.setOnAction(e->{
+			
+			Stage cancleStage = (Stage) errorButton.getScene().getWindow(); 
+			cancleStage.close();
+			gui.start(sameStage,score.getList(),score); 
+		});
+		
+		vBox.getChildren().addAll(error,errorButton);
+		
+		Scene scene = new Scene(vBox, 430, 80);
+		
+        stage.setScene(scene);
+        stage.show();
+	}
+}
