@@ -108,6 +108,14 @@ public class PopUp {
         	String medianHigh = "Median:     " + Double.toString(score.getMedianPercentScoreBasedOnHighestScore());
         	String maxHigh = "Maximum: " + Double.toString(score.getMaxScorePercentageBasedOnHighestScore());
         	String minHigh = "Minimum:  " + Double.toString(score.getMinScorePercentageBasedOnHighestScore());
+		String letterGrade = score.findLetterGrade(score.getMeanPercentScore());
+        	String letterGrade2 = score.findLetterGrade(score.getMedianPercentScore());
+        	String letterGrade3 = score.findLetterGrade(score.getMaxScorePercentage());
+        	String letterGrade4 = score.findLetterGrade(score.getMinScorePercentage());
+        	String letterGradeHigh = score.findLetterGrade(score.getMeanPercentScoreBasedOnHighestScore());
+        	String letterGradeHigh2 = score.findLetterGrade(score.getMedianPercentScoreBasedOnHighestScore());
+        	String letterGradeHigh3 = score.findLetterGrade(score.getMaxScorePercentageBasedOnHighestScore());
+        	String letterGradeHigh4 = score.findLetterGrade(score.getMinScorePercentageBasedOnHighestScore());
         	
         	Label rawLabel = new Label("Raw Score");
         	Label meanLabel = new Label(mean);
@@ -126,6 +134,14 @@ public class PopUp {
         	Label medianHighestLabel = new Label(medianHigh);
         	Label maxHighestLabel = new Label(maxHigh);
         	Label minHighestLabel = new Label(minHigh);
+		Label letterGrad = new Label(letterGrade);
+        	Label letterGrad2 = new Label(letterGrade2);
+        	Label letterGrad3 = new Label(letterGrade3);
+        	Label letterGrad4 = new Label(letterGrade4);
+        	Label letterGradHighest = new Label(letterGradeHigh);
+        	Label letterGradHighest2 = new Label(letterGradeHigh2);
+        	Label letterGradHighest3 = new Label(letterGradeHigh3);
+        	Label letterGradHighest4 = new Label(letterGradeHigh4);
         	
         	GridPane gp1 = new GridPane();
         	gp1.add(rawLabel, 0, 0);
@@ -144,7 +160,15 @@ public class PopUp {
         	gp1.add(maxHighestLabel, 2, 3);
         	gp1.add(minHighestLabel, 2, 4);
         	gp1.add(gradeLabel, 3, 0);
+		gp1.add(letterGrad, 3, 1);
+        	gp1.add(letterGrad2, 3, 2);
+        	gp1.add(letterGrad3, 3, 3);
+        	gp1.add(letterGrad4, 3, 4);
         	gp1.add(highestGradeLabel, 4, 0);
+		gp1.add(letterGradHighest, 4, 1);
+        	gp1.add(letterGradHighest2, 4, 2);
+        	gp1.add(letterGradHighest3, 4, 3);
+        	gp1.add(letterGradHighest4, 4, 4);
         	
         	gp1.setHgap(30.00);
         	gp1.setVgap(10.00);
