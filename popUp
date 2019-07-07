@@ -13,7 +13,17 @@ import javafx.scene.control.*;
 
 public class addGradePopUp {
 
-	public addGradePopUp(Stage newStage, Stage sameStage,String message, ScoreList score, String command, ListView l,int numberDeleted) {
+	/**
+	 * This method will call to make a pop up to add, delete and set/change a number
+	 * @param newStage gets a new stage that it will be displayed
+	 * @param sameStage gets the current stage that is being displayed to the user
+	 * @param message gets the message that will be display to the pop up
+	 * @param score gets the list that will be used to modify
+	 * @param command gets the command that the pop up will display and do
+	 * @param l gets the interaction of the ListView from the main display
+	 * @param numberDeleted gets the index from the ListView
+	 */
+	public addGradePopUp(Stage newStage, Stage sameStage, String message, ScoreList score, String command, ListView l, int numberDeleted) {
 
 		GUImain gui = new GUImain();
 		
