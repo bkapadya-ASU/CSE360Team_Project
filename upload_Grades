@@ -17,6 +17,12 @@ public class GradeAnalyzer extends Application {
 	private Button yesButton,noButton;
 	private BorderPane bp, bp2;
     @Override
+    
+    	/**
+    	 * This method will display the user to load a text file or not
+    	 * @param stage gets the stage to be displayed
+    	 */
+        publi
         public void start(Stage stage) throws Exception {
     	
     	GradeError_window error = new GradeError_window();
@@ -91,7 +97,11 @@ public class GradeAnalyzer extends Application {
         stage.setMinWidth(stage.getWidth());
         stage.setMinHeight(stage.getHeight());
     }
-  
+    
+    /**
+     * This method calls the display of javafx to start
+     * @param args
+     */
     public static void main(String[] args) {
         Application.launch(args);
     }
