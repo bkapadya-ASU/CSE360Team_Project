@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.*; 
 
 public class addGradePopUp {
-
 	/**
 	 * This method will call to make a pop up to add, delete and set/change a number
 	 * @param newStage gets a new stage that it will be displayed
@@ -23,7 +22,7 @@ public class addGradePopUp {
 	 * @param l gets the interaction of the ListView from the main display
 	 * @param numberDeleted gets the index from the ListView
 	 */
-	public addGradePopUp(Stage newStage, Stage sameStage, String message, ScoreList score, String command, ListView l, int numberDeleted) {
+	public addGradePopUp(Stage newStage, Stage sameStage,String message, ScoreList score, String command, ListView l,int numberDeleted) {
 
 		GUImain gui = new GUImain();
 		
@@ -31,11 +30,11 @@ public class addGradePopUp {
 	        HBox hBox2 = new HBox();
 	        VBox vBox = new VBox();
 
-	        double number = 0;
+	        String number = "";
 	       
 	        //checks if a number has been selected when wanting to delete
 	        if(numberDeleted>=0 && command.equals("Delete")) {
-	        	number = (double) l.getItems().get(numberDeleted); //get the value of the list and print it out
+	        	number = (String) l.getItems().get(numberDeleted); //get the value of the list and print it out
 	        }
 			 
 	        Label enterGrade = new Label(message + "");
@@ -48,25 +47,28 @@ public class addGradePopUp {
 	        grade.setTranslateY(10);
 	        grade.setMaxSize(200,20);
 	        
-	        Label showGrade = new Label(Double.toString(number));
+	        Label showGrade = new Label(number);
 	        showGrade.setTranslateX(40);
 	        showGrade.setTranslateY(5);
-	        showGrade.setStyle("-fx-font: 30 arial;");
-	        
+	        showGrade.setStyle("-fx-font: 30 arial;");        
 	        
 	        Button ok = new Button("OKAY");
 	        if(command.equals("Add")) {
 		        ok.setOnAction(e->{
-		        	
-		        	double roundNum = Math.round((Double.parseDouble(grade.getText())) * 100);
-		        	roundNum = roundNum/100;
-		        	
-		        	score.add(roundNum);
-		        	
-		        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
-		        	cancleStage.close();
-		        	
-		        	gui.start(sameStage,score.getList(),score);        
+		        	try {
+			        	double roundNum = Math.round((Double.parseDouble(grade.getText())) * 100);
+			        	roundNum = roundNum/100;
+			        	
+			        	score.add(roundNum);
+			        	
+			        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
+			        	cancleStage.close();
+			        	
+			        	gui.start(sameStage,score.getList(),score);
+		        	}
+		        	catch(NumberFormatException nfe){
+						errorWindow showError = new errorWindow(newStage, sameStage, score, "PLEASE INPUT A NUMBER",70);
+		        	}
 		        });
 	        }
 	        if(command.equals("Delete")) {
@@ -89,8 +91,7 @@ public class addGradePopUp {
 		        	gui.start(sameStage,score.getList(),score);     
 	        	});  
 	        }
-	        
-	        
+        
 	        ok.setTranslateX(110);
 	        ok.setTranslateY(20);
 	        ok.setMinWidth(50);
