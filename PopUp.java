@@ -13,7 +13,14 @@ import javafx.scene.control.*;
 
 
 public class PopUp {
-	
+	/**
+	 * This method will make a pop up that will display the threshold to change and the statistics of the list
+	 * @param newStage gets the new stage to be display
+	 * @param sameStage gets the same stage that it current is
+	 * @param message gets the message that it will be displayed in the pop up
+	 * @param score is the score list that it will work on
+	 * @param command gets the command on which pop to be displayed
+	 */
 	public PopUp(Stage newStage, Stage sameStage, String message, ScoreList score, String command)
 	{
 		
