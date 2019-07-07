@@ -19,6 +19,12 @@ public class GUImain {
 	private int deleteNumber = 0;
 	private int check = 0;
 	
+	/**
+	 * This displays the options for the user to choose either to add, delete, set/change, change threshold, save and exit the program.
+	 * @param primaryStage is the stage that it will display the stage
+	 * @param list is the list that has a copy of the text file being the input
+	 * @param scoreList gets the student score list
+	 */
 	public void start(Stage primaryStage,List<Score> list, ScoreList scoreList) {
 		Stage newStage = new Stage();
 		DecimalFormat df = new DecimalFormat("#.00");
