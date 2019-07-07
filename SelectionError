@@ -13,6 +13,12 @@ import javafx.scene.control.*;
 
 public class SelectionError {
 	
+	/**
+	*This method will display an error message if no number was selected
+	*@param stage gets the new stage that it will be displayed
+	*@param sameStage gets the stage that is currently displayed to the user
+	*@param score gets the score list that is being used
+	*/
 	public SelectionError(Stage stage, Stage sameStage, ScoreList score) {
 		
 		GUImain gui = new GUImain();
