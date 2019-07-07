@@ -8,7 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class GradeError_window extends Application{
-
+	/**
+	 * This method will display an error message if the text file doesn't contain any double point value
+	 * @param stage gets the stage that is being display to the user
+	 */
 	public void start(Stage stage) throws Exception {
 		
 		GradeAnalyzer ga = new GradeAnalyzer();
