@@ -209,7 +209,7 @@ public class ScoreList
 	 * @param percentScore Double value for student's percentage score.
 	 * @return String value for student's letter grade
 	 */
-	private String findLetterGrade(double percentScore) 
+	public String findLetterGrade(double percentScore) 
 	{
 		percentScore = Math.round(percentScore);
 		if (percentScore >= Athreshold)
