@@ -136,6 +136,10 @@ public class ScoreList
 		}
 	}
 	
+	/**
+	 * This method will get the median based on the raw score
+	 * @return the median of the raw score
+	 */
 	public double getMedianScore() {
 		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
 		Collections.sort(temp);
@@ -151,6 +155,10 @@ public class ScoreList
 		return temp.get(index).getRawScore();
 	}
 	
+	/**
+	 * This method will get the median based on the percent score
+	 * @return the median of the percent score
+	 */
 	public double getMedianPercentScore() {
 		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
 		Collections.sort(temp);
@@ -166,6 +174,10 @@ public class ScoreList
 		return temp.get(index).getPercentScore();
 	}
 	
+	/**
+	 * This method will get the median based on the highest score
+	 * @return the median of the highest score
+	 */
 	public double getMedianPercentScoreBasedOnHighestScore() {
 		ArrayList<Score> temp = new ArrayList<Score>(scoreList);
 		Collections.sort(temp);
@@ -453,6 +465,15 @@ public class ScoreList
 				count++;
 		}
 		return count;
+	}
+	
+	/**
+	 * This method gets the array list that has been created
+	 * @return the array list
+	 */
+	public ArrayList<Score> getList()
+	{
+		return scoreList;
 	}
 	
 }
