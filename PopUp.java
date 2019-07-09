@@ -111,21 +111,14 @@ public class PopUp {
         	String medianHigh = "Median:     " + Double.toString(score.getMedianPercentScoreBasedOnHighestScore());
         	String maxHigh = "Maximum: " + Double.toString(score.getMaxScorePercentageBasedOnHighestScore());
         	String minHigh = "Minimum:  " + Double.toString(score.getMinScorePercentageBasedOnHighestScore());
-		//String letterGrade = score.findLetterGrade(score.getMeanPercentScore());
-        	//String letterGrade2 = score.findLetterGrade(score.getMedianPercentScore());
-        	//String letterGrade3 = score.findLetterGrade(score.getMaxScorePercentage());
-        	//String letterGrade4 = score.findLetterGrade(score.getMinScorePercentage());
-        	//String letterGradeHigh = score.findLetterGrade(score.getMeanPercentScoreBasedOnHighestScore());
-        	//String letterGradeHigh2 = score.findLetterGrade(score.getMedianPercentScoreBasedOnHighestScore());
-        	//String letterGradeHigh3 = score.findLetterGrade(score.getMaxScorePercentageBasedOnHighestScore());
-        	//String letterGradeHigh4 = score.findLetterGrade(score.getMinScorePercentageBasedOnHighestScore());
         	        	
-        	Double highScore = score.getMaxScorePercentage();
+        	Double highScore = Math.abs(score.getMaxThreshold() - score.getMaxScore());
         	
-        	for(int i = 0; i<score.getNumberOfScores();i++) {
+        	for(int i = 0; i<score.getNumberOfScores();i++) 
+        	{
         		
         		String letterGrade = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i))));
-        		String letterGradHighest = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i)))/score.getMaxScorePercentage());
+        		String letterGradHighest = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i)))+highScore);
         		      	
 	        	Label rawLabel = new Label("Raw Score");
 	        	Label meanLabel = new Label(mean);
@@ -148,8 +141,7 @@ public class PopUp {
 	        	Label letterGrad = new Label(letterGrade);
 	
 	        	Label letterHigh = new Label(letterGradHighest);
-	        	
-	        	//GridPane gp1 = new GridPane();
+
 	        	gp1.add(rawLabel, 0, 0);
 	        	gp1.add(meanLabel, 0, 1);
 	        	gp1.add(medianLabel, 0, 2);
@@ -167,17 +159,9 @@ public class PopUp {
 	        	gp1.add(minHighestLabel, 2, 4);
 	        	gp1.add(gradeLabel, 3, 0);
 	        	gp1.add(highestGradeLabel, 4, 0);
-			//gp1.add(letterGrad, 3, 1);
-	        	//Check
-	        gp1.add(letterGrad, 3, i+1);
-	        	//gp1.add(letterGrad2, 3, 2);
-	        	//gp1.add(letterGrad3, 3, 3);
-	        	//gp1.add(letterGrad4, 3, 4);
-	        	//gp1.add(highestGradeLabel, 4, 0);
-			//gp1.add(letterGradHighest, 4, 1);
-	        	//check
-	        gp1.add(letterHigh, 4, i+1);
-	        	//}
+
+		        gp1.add(letterGrad, 3, i+1);
+		        gp1.add(letterHigh, 4, i+1);
 	        	gp1.setHgap(30.00);
 	        	gp1.setVgap(10.00);
 	        }
