@@ -1,3 +1,5 @@
+package GUI.project;
+
 import java.util.*;
 
 public class ScoreList 
@@ -476,4 +478,7 @@ public class ScoreList
 		return scoreList;
 	}
 	
+	public double getMaxThreshold() {
+		return Athreshold;
+	}
 }
