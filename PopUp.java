@@ -1,4 +1,4 @@
-package application;
+package GUI.project;
 
 import java.io.File;
 import javafx.scene.layout.BorderPane;
@@ -13,6 +13,9 @@ import javafx.scene.control.*;
 
 
 public class PopUp {
+	
+	GridPane gp1 = new GridPane();
+	
 	/**
 	 * This method will make a pop up that will display the threshold to change and the statistics of the list
 	 * @param newStage gets the new stage to be display
@@ -21,7 +24,7 @@ public class PopUp {
 	 * @param score is the score list that it will work on
 	 * @param command gets the command on which pop to be displayed
 	 */
-	public PopUp(Stage newStage, Stage sameStage, String message, ScoreList score, String command)
+	public PopUp(Stage newStage, Stage sameStage, String message, ScoreList score, String command,ListView listView)
 	{
 		
 		GUImain gui = new GUImain();
@@ -108,74 +111,80 @@ public class PopUp {
         	String medianHigh = "Median:     " + Double.toString(score.getMedianPercentScoreBasedOnHighestScore());
         	String maxHigh = "Maximum: " + Double.toString(score.getMaxScorePercentageBasedOnHighestScore());
         	String minHigh = "Minimum:  " + Double.toString(score.getMinScorePercentageBasedOnHighestScore());
-		String letterGrade = score.findLetterGrade(score.getMeanPercentScore());
-        	String letterGrade2 = score.findLetterGrade(score.getMedianPercentScore());
-        	String letterGrade3 = score.findLetterGrade(score.getMaxScorePercentage());
-        	String letterGrade4 = score.findLetterGrade(score.getMinScorePercentage());
-        	String letterGradeHigh = score.findLetterGrade(score.getMeanPercentScoreBasedOnHighestScore());
-        	String letterGradeHigh2 = score.findLetterGrade(score.getMedianPercentScoreBasedOnHighestScore());
-        	String letterGradeHigh3 = score.findLetterGrade(score.getMaxScorePercentageBasedOnHighestScore());
-        	String letterGradeHigh4 = score.findLetterGrade(score.getMinScorePercentageBasedOnHighestScore());
+		//String letterGrade = score.findLetterGrade(score.getMeanPercentScore());
+        	//String letterGrade2 = score.findLetterGrade(score.getMedianPercentScore());
+        	//String letterGrade3 = score.findLetterGrade(score.getMaxScorePercentage());
+        	//String letterGrade4 = score.findLetterGrade(score.getMinScorePercentage());
+        	//String letterGradeHigh = score.findLetterGrade(score.getMeanPercentScoreBasedOnHighestScore());
+        	//String letterGradeHigh2 = score.findLetterGrade(score.getMedianPercentScoreBasedOnHighestScore());
+        	//String letterGradeHigh3 = score.findLetterGrade(score.getMaxScorePercentageBasedOnHighestScore());
+        	//String letterGradeHigh4 = score.findLetterGrade(score.getMinScorePercentageBasedOnHighestScore());
+        	        	
+        	Double highScore = score.getMaxScorePercentage();
         	
-        	Label rawLabel = new Label("Raw Score");
-        	Label meanLabel = new Label(mean);
-        	Label medianLabel = new Label(median);
-        	Label maxLabel = new Label(max);
-        	Label minLabel = new Label(min);
-        	Label percentileLabel = new Label("Percentile Score");
-        	Label highestLabel = new Label("Percentile Score with Highest Score");
-        	Label gradeLabel = new Label("Letter Grade");
-        	Label highestGradeLabel = new Label("Letter Grade with Highest Score");
-        	Label meanPercentileLabel = new Label(meanPer);
-        	Label medianPercentileLabel = new Label(medianPer);
-        	Label maxPercentileLabel = new Label(maxPer);
-        	Label minPercentileLabel = new Label(minPer);
-        	Label meanHighestLabel = new Label(meanHigh);
-        	Label medianHighestLabel = new Label(medianHigh);
-        	Label maxHighestLabel = new Label(maxHigh);
-        	Label minHighestLabel = new Label(minHigh);
-		Label letterGrad = new Label(letterGrade);
-        	Label letterGrad2 = new Label(letterGrade2);
-        	Label letterGrad3 = new Label(letterGrade3);
-        	Label letterGrad4 = new Label(letterGrade4);
-        	Label letterGradHighest = new Label(letterGradeHigh);
-        	Label letterGradHighest2 = new Label(letterGradeHigh2);
-        	Label letterGradHighest3 = new Label(letterGradeHigh3);
-        	Label letterGradHighest4 = new Label(letterGradeHigh4);
-        	
-        	GridPane gp1 = new GridPane();
-        	gp1.add(rawLabel, 0, 0);
-        	gp1.add(meanLabel, 0, 1);
-        	gp1.add(medianLabel, 0, 2);
-        	gp1.add(maxLabel, 0, 3);
-        	gp1.add(minLabel, 0, 4);
-        	gp1.add(percentileLabel, 1, 0);
-        	gp1.add(meanPercentileLabel, 1, 1);
-        	gp1.add(medianPercentileLabel, 1, 2);
-        	gp1.add(maxPercentileLabel, 1, 3);
-        	gp1.add(minPercentileLabel, 1, 4);
-        	gp1.add(highestLabel, 2, 0);
-        	gp1.add(meanHighestLabel, 2, 1);
-        	gp1.add(medianHighestLabel, 2, 2);
-        	gp1.add(maxHighestLabel, 2, 3);
-        	gp1.add(minHighestLabel, 2, 4);
-        	gp1.add(gradeLabel, 3, 0);
-		gp1.add(letterGrad, 3, 1);
-        	gp1.add(letterGrad2, 3, 2);
-        	gp1.add(letterGrad3, 3, 3);
-        	gp1.add(letterGrad4, 3, 4);
-        	gp1.add(highestGradeLabel, 4, 0);
-		gp1.add(letterGradHighest, 4, 1);
-        	gp1.add(letterGradHighest2, 4, 2);
-        	gp1.add(letterGradHighest3, 4, 3);
-        	gp1.add(letterGradHighest4, 4, 4);
-        	
-        	gp1.setHgap(30.00);
-        	gp1.setVgap(10.00);
-        	
-        	Scene sceneS = new Scene(gp1, 900, 220);
-        	newStage.setScene(sceneS);
-        	newStage.show();
+        	for(int i = 0; i<score.getNumberOfScores();i++) {
+        		
+        		String letterGrade = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i))));
+        		String letterGradHighest = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i)))/score.getMaxScorePercentage());
+        		      	
+	        	Label rawLabel = new Label("Raw Score");
+	        	Label meanLabel = new Label(mean);
+	        	Label medianLabel = new Label(median);
+	        	Label maxLabel = new Label(max);
+	        	Label minLabel = new Label(min);
+	        	Label percentileLabel = new Label("Percentile Score");
+	        	Label highestLabel = new Label("Percentile Score with Highest Score");
+	        	Label gradeLabel = new Label("Letter Grade");
+	        	Label highestGradeLabel = new Label("Letter Grade with Highest Score");
+	        	Label meanPercentileLabel = new Label(meanPer);
+	        	Label medianPercentileLabel = new Label(medianPer);
+	        	Label maxPercentileLabel = new Label(maxPer);
+	        	Label minPercentileLabel = new Label(minPer);
+	        	Label meanHighestLabel = new Label(meanHigh);
+	        	Label medianHighestLabel = new Label(medianHigh);
+	        	Label maxHighestLabel = new Label(maxHigh);
+	        	Label minHighestLabel = new Label(minHigh);
+			
+	        	Label letterGrad = new Label(letterGrade);
+	
+	        	Label letterHigh = new Label(letterGradHighest);
+	        	
+	        	//GridPane gp1 = new GridPane();
+	        	gp1.add(rawLabel, 0, 0);
+	        	gp1.add(meanLabel, 0, 1);
+	        	gp1.add(medianLabel, 0, 2);
+	        	gp1.add(maxLabel, 0, 3);
+	        	gp1.add(minLabel, 0, 4);
+	        	gp1.add(percentileLabel, 1, 0);
+	        	gp1.add(meanPercentileLabel, 1, 1);
+	        	gp1.add(medianPercentileLabel, 1, 2);
+	        	gp1.add(maxPercentileLabel, 1, 3);
+	        	gp1.add(minPercentileLabel, 1, 4);
+	        	gp1.add(highestLabel, 2, 0);
+	        	gp1.add(meanHighestLabel, 2, 1);
+	        	gp1.add(medianHighestLabel, 2, 2);
+	        	gp1.add(maxHighestLabel, 2, 3);
+	        	gp1.add(minHighestLabel, 2, 4);
+	        	gp1.add(gradeLabel, 3, 0);
+	        	gp1.add(highestGradeLabel, 4, 0);
+			//gp1.add(letterGrad, 3, 1);
+	        	//Check
+	        gp1.add(letterGrad, 3, i+1);
+	        	//gp1.add(letterGrad2, 3, 2);
+	        	//gp1.add(letterGrad3, 3, 3);
+	        	//gp1.add(letterGrad4, 3, 4);
+	        	//gp1.add(highestGradeLabel, 4, 0);
+			//gp1.add(letterGradHighest, 4, 1);
+	        	//check
+	        gp1.add(letterHigh, 4, i+1);
+	        	//}
+	        	gp1.setHgap(30.00);
+	        	gp1.setVgap(10.00);
+	        }
+	        	
+	        	Scene sceneS = new Scene(gp1, 1050, 300);
+	        	newStage.setScene(sceneS);
+	        	newStage.show();
+		}
+		}
 	}
-	}
-}
