@@ -111,7 +111,8 @@ public class PopUp {
         	String medianHigh = "Median:     " + Double.toString(score.getMedianPercentScoreBasedOnHighestScore());
         	String maxHigh = "Maximum: " + Double.toString(score.getMaxScorePercentageBasedOnHighestScore());
         	String minHigh = "Minimum:  " + Double.toString(score.getMinScorePercentageBasedOnHighestScore());
-        	        	
+        	
+		//highScore will get the absolute value of the difference between the max score and threshold
         	Double highScore = Math.abs(score.getMaxThreshold() - score.getMaxScore());
         	
         	for(int i = 0; i<score.getNumberOfScores();i++) 
