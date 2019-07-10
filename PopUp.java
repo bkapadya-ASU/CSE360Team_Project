@@ -111,11 +111,19 @@ public class PopUp {
     		//highScore will get the absolute value of the difference between the max score and threshold
         	Double highScore = Math.abs(score.getMaxThreshold() - score.getMaxScore());
         	
-        	for(int i = 0; i<score.getNumberOfScores();i++) 
+        	for(int i = 0; i<=0;i++) 
         	{
         		
-        		String letterGrade = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i))));
-        		String letterGradHighest = score.findLetterGrade((Double.parseDouble((String) listView.getItems().get(i)))+highScore);
+        		String letterGrade = ("Number of A's: " + score.getNumberofA() + "\n"
+        							+ "Number of B's: " + score.getNumberofB() + "\n"
+        							+ "Number of C's: " + score.getNumberofC() + "\n"
+        							+ "Number of D's: " + score.getNumberofD() + "\n"
+        							+ "Number of E's: " + score.getNumberofE() + "\n");
+        		String letterGradHighest = ("Number of A's: " + score.getNumberofABasedOnHighestScore() + "\n"
+						+ "Number of B's: " + score.getNumberofBBasedOnHighestScore() + "\n"
+						+ "Number of C's: " + score.getNumberofCBasedOnHighestScore() + "\n"
+						+ "Number of D's: " + score.getNumberofDBasedOnHighestScore() + "\n"
+						+ "Number of E's: " + score.getNumberofEBasedOnHighestScore() + "\n");
         		      	
 	        	Label rawLabel = new Label("Raw Score");
 	        	Label meanLabel = new Label(mean);
