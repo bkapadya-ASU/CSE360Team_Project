@@ -1,4 +1,3 @@
-
 public class Score implements Comparable<Score>
 {
 	private double rawScore;

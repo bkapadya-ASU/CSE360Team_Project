@@ -1,5 +1,3 @@
-package GUI.project;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +14,7 @@ public class GradeError_window extends Application{
 		
 		GradeAnalyzer ga = new GradeAnalyzer();
 		
-		Label errorLabel = new Label("The file you selected doesn't have double point values");
+		Label errorLabel = new Label("The file you selected doesn't have double point values.");
 		errorLabel.setTranslateX(20);
 		errorLabel.setTranslateY(25);
 		

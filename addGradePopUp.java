@@ -1,0 +1,121 @@
+import javafx.scene.layout.VBox;
+
+import java.text.DecimalFormat;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.scene.control.*; 
+
+public class addGradePopUp {
+	/**
+	 * This method will call to make a pop up to add, delete and set/change a number
+	 * @param newStage gets a new stage that it will be displayed
+	 * @param sameStage gets the current stage that is being displayed to the user
+	 * @param message gets the message that will be display to the pop up
+	 * @param score gets the list that will be used to modify
+	 * @param command gets the command that the pop up will display and do
+	 * @param l gets the interaction of the ListView from the main display
+	 * @param numberDeleted gets the index from the ListView
+	 */
+	public addGradePopUp(Stage newStage, Stage sameStage,String message, ScoreList score, String command, ListView l,int numberDeleted) {
+
+		GUImain gui = new GUImain();
+		
+	        HBox hBox = new HBox();
+	        HBox hBox2 = new HBox();
+	        VBox vBox = new VBox();
+
+	        String number = "";
+	       
+	        //checks if a number has been selected when wanting to delete
+	        if(numberDeleted>=0 && command.equals("Delete")) {
+	        	number = (String) l.getItems().get(numberDeleted); //get the value of the list and print it out
+	        }
+			 
+	        Label enterGrade = new Label(message + "");
+	        enterGrade.setTranslateY(15);
+	        enterGrade.setTranslateX(5);
+	        enterGrade.setStyle("-fx-font: 16 arial;");
+	        
+	        TextField grade = new TextField();
+	        grade.setTranslateX(30);
+	        grade.setTranslateY(10);
+	        grade.setMaxSize(200,20);
+	        
+	        Label showGrade = new Label(number);
+	        showGrade.setTranslateX(40);
+	        showGrade.setTranslateY(5);
+	        showGrade.setStyle("-fx-font: 30 arial;");        
+	        
+	        Button ok = new Button("OKAY");
+	        if(command.equals("Add")) {
+		        ok.setOnAction(e->{
+		        	try {
+			        	double roundNum = Math.round((Double.parseDouble(grade.getText())) * 100);
+			        	roundNum = roundNum/100;
+			        	
+			        	score.add(roundNum);
+			        	
+			        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
+			        	cancleStage.close();
+			        	
+			        	gui.start(sameStage,score.getList(),score);
+		        	}
+		        	catch(NumberFormatException nfe){
+						errorWindow showError = new errorWindow(newStage, sameStage, score, "PLEASE INPUT A NUMBER",70);
+		        	}
+		        });
+	        }
+	        if(command.equals("Delete")) {
+	        	ok.setOnAction(e->{
+	        		score.delete(numberDeleted);
+	        		
+		        	Stage cancleStage = (Stage) ok.getScene().getWindow(); //closes window add window
+		        	cancleStage.close();
+		        	
+		        	gui.start(sameStage,score.getList(),score);     
+	        	});
+	        }
+	        if(command.contentEquals("SET/CHANGE")) {
+		        ok.setOnAction(e->{
+	        		score.setScore(Double.parseDouble(grade.getText()), numberDeleted);
+	        		
+		        	Stage cancleStage = (Stage) ok.getScene().getWindow();
+		        	cancleStage.close();
+		        	
+		        	gui.start(sameStage,score.getList(),score);     
+	        	});  
+	        }
+        
+	        ok.setTranslateX(110);
+	        ok.setTranslateY(20);
+	        ok.setMinWidth(50);
+	        
+	        Button cancle = new Button("CANCEL");
+			cancle.setOnAction(e ->{
+	        	Stage cancleStage = (Stage) cancle.getScene().getWindow();
+	        	cancleStage.close();
+		     });
+	        cancle.setTranslateX(130);
+	        cancle.setTranslateY(20);
+	        cancle.setMinWidth(50);
+	        
+			if(command.equals("Add") || command.equals("Delete") || command.equals("SET/CHANGE")) {
+			    if(command.equals("Add") || command.equals("SET/CHANGE"))
+			    	hBox.getChildren().addAll(enterGrade, grade);
+			    else
+			    	hBox.getChildren().addAll(enterGrade, showGrade);
+		        
+			    hBox2.getChildren().addAll(ok, cancle);
+		        vBox.getChildren().addAll(hBox, hBox2);
+		                
+		        Scene scene = new Scene(vBox, 400, 100);
+		    	//Scene scene = new Scene(vBox, 600,200);
+		        newStage.setScene(scene);
+		        newStage.show();
+			}
+		}
+}

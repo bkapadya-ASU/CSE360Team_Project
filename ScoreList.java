@@ -1,6 +1,5 @@
-package GUI.project;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ScoreList 
 {
@@ -64,8 +63,8 @@ public class ScoreList
 		if (rawScore < minScore)
 			minScore = rawScore;
 		
-		double percentScore = rawScore / totalScorePossible *100.0;
-		double percentScoreBasedOnHighestScore= rawScore / maxScore;
+		double percentScore = rawScore / totalScorePossible * 100.0;
+		double percentScoreBasedOnHighestScore= rawScore / maxScore *100.0;
 		String letterGrade = findLetterGrade(percentScore);
 		String letterGradeBasedOnHighestScore = findLetterGrade(percentScoreBasedOnHighestScore);
 		Score temp  = new Score(rawScore, percentScore, percentScoreBasedOnHighestScore, letterGrade, letterGradeBasedOnHighestScore);

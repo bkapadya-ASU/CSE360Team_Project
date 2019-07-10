@@ -1,0 +1,46 @@
+import javafx.scene.layout.VBox;
+
+import javafx.scene.paint.Color;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class errorWindow {
+	/**
+	 * This method will display an error message if no number is selected or inputed
+	 * @param stage gets a new stage that it will be displayed
+	 * @param sameStage gets the current stage that is being displayed to the user
+	 * @param score gets the list that will be used to modify
+	 * @param message gets the message that will be display to the pop up
+	 * @param translateX uses an int to translate the the message within the scene
+	 */
+	public errorWindow(Stage stage, Stage sameStage, ScoreList score, String message, int translateX) {
+		
+		GUImain gui = new GUImain();
+		VBox vBox = new VBox();
+		
+		Label error = new Label(message);
+		error.setTextFill(Color.web("#ff0000"));
+		error.setStyle("-fx-font: 20 arial;");
+        error.setTranslateX(translateX);
+        
+		Button errorButton = new Button("OK");
+		errorButton.setTranslateX(180);
+		errorButton.setTranslateY(10);
+		errorButton.setOnAction(e->{
+			
+			Stage cancleStage = (Stage) errorButton.getScene().getWindow(); 
+			cancleStage.close();
+			gui.start(sameStage,score.getList(),score); 
+		});
+		
+		vBox.getChildren().addAll(error,errorButton);
+		
+		Scene scene = new Scene(vBox, 430, 80);
+		
+        stage.setScene(scene);
+        stage.show();
+	}
+}
+

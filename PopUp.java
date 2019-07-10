@@ -1,5 +1,3 @@
-package GUI.project;
-
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -172,4 +170,4 @@ public class PopUp {
 	        	newStage.show();
 		}
 		}
-	}ss
+	}
