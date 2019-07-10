@@ -1,11 +1,6 @@
 package GUI.project;
 
-import java.io.File;
 import javafx.scene.layout.BorderPane;
-import java.io.FileNotFoundException;
-import java.util.*;  
-import javafx.stage.FileChooser;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -15,7 +10,6 @@ import javafx.scene.control.*;
 public class PopUp {
 	
 	GridPane gp1 = new GridPane();
-	
 	/**
 	 * This method will make a pop up that will display the threshold to change and the statistics of the list
 	 * @param newStage gets the new stage to be display
@@ -30,9 +24,10 @@ public class PopUp {
 		GUImain gui = new GUImain();
 		
         GridPane gp = new GridPane();
-        BorderPane bp = new BorderPane();
         
         Label enterGrade = new Label(message + ": ");
+        TextArea gradesText = new TextArea();
+        
         enterGrade.setTranslateY(15);
         enterGrade.setTranslateX(5);
         enterGrade.setStyle("-fx-font: 16 arial;");
@@ -90,7 +85,10 @@ public class PopUp {
         	
         	gp.setVgap(10.00);
         	
-        	Scene scene = new Scene(gp, 400, 220);
+        	ScrollPane sp = new ScrollPane(gp);
+        	sp.setFitToWidth(true);
+        	
+        	Scene scene = new Scene(sp, 400, 220);
          	newStage.setScene(scene);
          	newStage.show();
         }
@@ -138,9 +136,8 @@ public class PopUp {
 	        	Label medianHighestLabel = new Label(medianHigh);
 	        	Label maxHighestLabel = new Label(maxHigh);
 	        	Label minHighestLabel = new Label(minHigh);
-			
+
 	        	Label letterGrad = new Label(letterGrade);
-	
 	        	Label letterHigh = new Label(letterGradHighest);
 
 	        	gp1.add(rawLabel, 0, 0);
@@ -166,10 +163,13 @@ public class PopUp {
 	        	gp1.setHgap(30.00);
 	        	gp1.setVgap(10.00);
 	        }
-	        	
-		Scene sceneS = new Scene(gp1, 1050, 300);
-		newStage.setScene(sceneS);
-		newStage.show();
+        		
+        	    ScrollPane sp = new ScrollPane(gp1);
+        	    sp.setFitToWidth(true);
+        	    
+	        	Scene sceneS = new Scene(sp, 1050, 300);
+	        	newStage.setScene(sceneS);
+	        	newStage.show();
 		}
 		}
-	}
+	}ss
